@@ -10,12 +10,12 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
   <style>
     :root {
-      --bg-color: #000000;
+      --bg-color: #141414;
       --card-bg: #111111;
-      --accent-color: #38bdf8;
-      --text-primary: #f8fafc;
-      --text-secondary: #94a3b8;
-      --border-color: #222222;
+      --accent-color: #646464;
+      --text-primary: #646464;
+      --text-secondary: #555555;
+      --border-color: #282828;
     }
 
     * {
@@ -76,7 +76,7 @@
       width: 40px;
       height: 40px;
       border-radius: 50%;
-      background-color: rgba(56, 189, 248, 0.1);
+      background-color: color-mix(in srgb, var(--accent-color) 10%, transparent);
       color: var(--accent-color);
       border: 1px solid var(--accent-color);
       font-size: 1.1rem;
@@ -93,7 +93,7 @@
         color: var(--accent-color);
       }
       .filter-btn:hover { background-color: var(--accent-color); color: var(--bg-color); }
-      .sub-filter-btn:hover, .toggle-all-btn:hover { background-color: rgba(56, 189, 248, 0.1); }
+      .sub-filter-btn:hover, .toggle-all-btn:hover { background-color: color-mix(in srgb, var(--accent-color) 10%, transparent); }
       .btn-add:hover { background-color: var(--accent-color); color: var(--bg-color); transform: translateY(-2px); }
       .gallery-item:hover img { transform: scale(1.03); }
       .btn-visit-app:hover { opacity: 0.9; transform: translateY(-2px); }
@@ -166,7 +166,7 @@
     }
 
     .sub-filter-btn.active {
-      background-color: rgba(56, 189, 248, 0.1);
+      background-color: color-mix(in srgb, var(--accent-color) 10%, transparent);
       color: var(--accent-color);
       border-color: var(--accent-color);
     }
@@ -221,7 +221,7 @@
       width: 48px;
       height: 48px;
       background-color: rgba(0, 0, 0, 0.6);
-      border: 2px solid var(--accent-color);
+      border: 2px solid rgba(217,217,217,255);
       border-radius: 50%;
       display: flex;
       justify-content: center;
@@ -238,13 +238,13 @@
       height: 0;
       border-style: solid;
       border-width: 8px 0 8px 14px;
-      border-color: transparent transparent transparent var(--accent-color);
+      border-color: transparent transparent transparent rgba(217,217,217,255);
       margin-left: 3px;
     }
 
     .webapp-card-preview {
       padding: 30px 20px;
-      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      background: color-mix(in srgb, var(--accent-color) 10%, transparent);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -386,7 +386,7 @@
     .webapp-modal-preview {
       width: 100%; height: 100%;
       padding: 40px 20px;
-      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      background: color-mix(in srgb, var(--accent-color) 10%, transparent);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -409,7 +409,7 @@
     .detail-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
     .tag-badge {
       font-size: 12px;
-      background-color: rgba(56, 189, 248, 0.1);
+      background-color: color-mix(in srgb, var(--accent-color) 10%, transparent);
       color: var(--accent-color);
       border: 1px solid var(--accent-color);
       padding: 3px 8px;
@@ -452,6 +452,12 @@
 <body>
 
   <h1>Portfolio</h1>
+
+  <div class="social-icons">
+    <a href="https://www.instagram.com/shocu531/" target="_blank" class="social-btn" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+    <a href="https://x.com/shocu531" target="_blank" class="social-btn" title="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+    <a href="mailto:shocu531@gmail.com" class="social-btn" title="Email"><i class="fa-solid fa-envelope"></i></a>
+  </div>
 
   <div class="filter-section" id="filterSection">
     <div class="filter-menu">
@@ -552,34 +558,34 @@
     };
 
     const ALL_TAGS = Object.values(CAT_TAGS_MAP).flat();
-    let activeTags = new Set(ALL_TAGS);
+    let activeTags = new Set();
     let pendingItems = [];
 
     const mediaList = [
-      { tags: ['webapp'], type: 'webapp', title: 'Tarot Pick', link: 'https://shocu531.github.io/tarot-pick/', desc: `• สุ่มไพ่ทาโรต์\n• พัฒนาด้วย HTML, CSS, JavaScript\n• AI ที่ใช้: Gemini` },
-      { tags: ['webapp'], type: 'webapp', title: 'Chord Identifier', link: 'https://shocu531.github.io/chord-identifier/', desc: `• ระบุชื่อคอร์ดแบบเรียลไทม์จากการกดโน้ต\n• รองรับการกดโน้ตด้วยเมาส์ แป้นพิมพ์ และ MIDI Controller\n• มีเสียงตามการกดโน้ต\n• พัฒนาด้วย HTML, CSS, JavaScript\n• AI ที่ใช้: Gemini` },
-      { tags: ['webapp'], type: 'webapp', title: 'THB / USD / JPY Converter', link: 'https://shocu531.github.io/thb-usd-jpy-converter/', desc: `• แปลงอัตราแลกเปลี่ยน 3 สกุลเงิน\n• ใส่จำนวนเงินแค่สกุลเดียว จะแปลงสกุลที่เหลือให้\n• ใช้อัตราแลกเปลี่ยนจริงล่าสุด\n• พัฒนาด้วย HTML, CSS, JavaScript\n• AI ที่ใช้: Gemini` },
-      { tags: ['webapp'], type: 'webapp', title: 'Binaural Beats Generator', link: 'https://shocu531.github.io/binaural-beats/', desc: `• สร้างเสียง Binaural Beats สำหรับการทำสมาธิและการพักผ่อน\n• พัฒนาด้วย Web Audio API, HTML, CSS, JavaScript\n• AI ที่ใช้: Gemini` },
-      { tags: ['bgm', 'dub', 'sound_edit'], type: 'youtube', id: 'prE-CU5Ruqs', title: 'GOPGAP', desc: `• จบงานเป็น .wav ไฟล์เดียวที่เอาไปรวมกับงานภาพได้เลย\n• เฉพาะเสียง FX, Foley, บรรยากาศ ที่ส่วนใหญ่โหลดจาก 3rd Party นอกนั้นทำเองทั้งหมด\n• ซอฟต์แวร์ที่ใช้: Ableton Live\n• ไม่ใช้ AI` },
-      { tags: ['bgm', 'dub', 'sound_edit'], type: 'youtube', id: '6YZIQ8rhybQ', title: 'A Daily Disaster', desc: `• จบงานเป็น .wav ไฟล์เดียวที่เอาไปรวมกับงานภาพได้เลย\n• เฉพาะเสียง FX, Foley, บรรยากาศ ที่ส่วนใหญ่โหลดจาก 3rd Party และเสียงพากย์ที่มาจากคนอื่น (ยกเว้นปีศาจสายฟ้า)\n• ซอฟต์แวร์ที่ใช้: Ableton Live\n• ไม่ใช้ AI` },
-      { tags: ['bgm', 'dub', 'sound_edit'], type: 'youtube', id: '2MLnYi3CVW4', title: 'A Daily Disaster', desc: `• จบงานเป็น .wav ไฟล์เดียวที่เอาไปรวมกับงานภาพได้เลย\n• เฉพาะเสียง FX, Foley, บรรยากาศ ที่ส่วนใหญ่โหลดจาก 3rd Party และเสียงพากย์ที่มาจากคนอื่น (ยกเว้นนักสืบ)\n• ซอฟต์แวร์ที่ใช้: Ableton Live\n• ไม่ใช้ AI` },
-      { tags: ['2d_animate'], type: 'youtube', id: '3WiSuG1dFGw', title: 'ส่วนหนึ่งของ Interrogator', desc: `• งานตำแหน่ง 2D Animator ที่องค์กรแห่งหนึ่ง\n• ส่วนที่ทำ: การเคลื่อนไหวของตัวละคร\n• ซอฟต์แวร์ที่ใช้: Toon Boom Harmony\n• ไม่ใช้ AI` },
-      { tags: ['2d_animate'], type: 'youtube', id: 'x7kNhP0kfys', title: 'ส่วนหนึ่งของ ちみも (Chimimo)', desc: `• งานตำแหน่ง 2D Animator ที่องค์กรแห่งหนึ่ง\n• ส่วนที่ทำ: การเคลื่อนไหวของตัวละคร\n• ซอฟต์แวร์ที่ใช้: Toon Boom Harmony\n• ไม่ใช้ AI` },
-      { tags: ['2d_animate'], type: 'image', url: 'https://github.com/Suppachok-N/portfolio/blob/main/Anim-Gunfight.gif?raw=true', title: 'Gunfight (ฝึกฝน)', desc: `• งานตำแหน่ง 2D Animator ที่องค์กรแห่งหนึ่ง\n• งานฝึกฝนกันเองในทีม โจทย์คือมอนสเตอร์ ต้องมีการพุ่งใส่กล้อง เริ่มและจบด้วยฉากขาว\n• ซอฟต์แวร์ที่ใช้: Toon Boom Harmony\n• ไม่ใช้ AI` },
-      { tags: ['2d_animate'], type: 'image', url: 'https://github.com/Suppachok-N/portfolio/blob/main/Anim-L_Run.gif?raw=true', title: 'Run cycle', desc: `• ซอฟต์แวร์ที่ใช้: Toon Boom Harmony\n• ไม่ใช้ AI` },
-      { tags: ['2d_animate'], type: 'image', url: 'https://github.com/Suppachok-N/portfolio/blob/main/Anim-Transform.gif?raw=true', title: 'Transform (ฝึกฝน)', desc: `• งานตำแหน่ง 2D Animator ที่องค์กรแห่งหนึ่ง\n• งานฝึกฝนกันเองในทีม โจทย์คือสาวน้อยแปลงร่าง เริ่มและจบด้วยฉากขาว\n• ซอฟต์แวร์ที่ใช้: Toon Boom Harmony\n• ไม่ใช้ AI` },
-      { tags: ['graphic'], type: 'image', url: 'https://github.com/Suppachok-N/portfolio/blob/main/Graph-Alert_HUD.jpg?raw=true', title: 'HUD interface', desc: `• ซอฟต์แวร์ที่ใช้: Inkscape, Davinci Resole\n• ไม่ใช้ AI` },
-      { tags: ['graphic'], type: 'image', url: 'https://github.com/Suppachok-N/portfolio/blob/main/Graph-Maneki_Neko.jpg?raw=true', title: 'Maneki Neko', desc: `• ซอฟต์แวร์ที่ใช้: Inkscape\n• ไม่ใช้ AI` },
-      { tags: ['graphic'], type: 'image', url: 'https://github.com/Suppachok-N/portfolio/blob/main/Graph-Sustainable_Icon.jpg?raw=true', title: 'Sustainable icon set', desc: `• ซอฟต์แวร์ที่ใช้: Inkscape\n• ไม่ใช้ AI` },
-      { tags: ['illustration'], type: 'image', url: 'https://github.com/Suppachok-N/portfolio/blob/main/Illus-Base.png?raw=true', title: 'Outer base', desc: `• ซอฟต์แวร์ที่ใช้: Clip Studio Paint\n• ไม่ใช้ AI` },
-      { tags: ['illustration'], type: 'image', url: 'https://github.com/Suppachok-N/portfolio/blob/main/Illus-L-Captain.png?raw=true', title: 'Captain', desc: `• ซอฟต์แวร์ที่ใช้: Clip Studio Paint\n• ไม่ใช้ AI` },
-      { tags: ['illustration'], type: 'image', url: 'https://github.com/Suppachok-N/portfolio/blob/main/Illus-L-F-Operation.png?raw=true', title: 'Operation', desc: `• ซอฟต์แวร์ที่ใช้: Clip Studio Paint\n• ไม่ใช้ AI` },
-      { tags: ['illustration'], type: 'image', url: 'https://github.com/Suppachok-N/portfolio/blob/main/Illus-L-K-Fight.png?raw=true', title: 'Fight', desc: `• ซอฟต์แวร์ที่ใช้: Clip Studio Paint\n• ไม่ใช้ AI` },
-      { tags: ['illustration'], type: 'image', url: 'https://github.com/Suppachok-N/portfolio/blob/main/Illus-L-Singing.png?raw=true', title: 'Singing', desc: `• ซอฟต์แวร์ที่ใช้: Clip Studio Paint\n• ไม่ใช้ AI` },
-      { tags: ['illustration'], type: 'image', url: 'https://github.com/Suppachok-N/portfolio/blob/main/Illus-L_M_Action.png?raw=true', title: 'Action', desc: `• ซอฟต์แวร์ที่ใช้: Clip Studio Paint\n• ไม่ใช้ AI` },
-      { tags: ['illustration'], type: 'image', url: 'https://github.com/cokechok/portfolio/blob/main/Illus-L_Operator.png?raw=true', title: 'Operator', desc: `• ซอฟต์แวร์ที่ใช้: Clip Studio Paint\n• ไม่ใช้ AI` },
-      { tags: ['illustration'], type: 'image', url: 'https://github.com/Suppachok-N/portfolio/blob/main/Illus-Natsuki.png?raw=true', title: 'Natsuki', desc: `• ซอฟต์แวร์ที่ใช้: Clip Studio Paint\n• ไม่ใช้ AI` },
-      { tags: ['illustration'], type: 'image', url: 'https://github.com/cokechok/portfolio/blob/main/Illus-Norigo.png?raw=true', title: 'Norigo', desc: `• ซอฟต์แวร์ที่ใช้: Clip Studio Paint\n• ไม่ใช้ AI` }
+      { tags: ['webapp'], type: 'webapp', title: 'Tarot Pick', link: 'https://shocu531.github.io/tarot-pick/', desc: `• Randomize Tarot cards\n• Developed with HTML, CSS, JavaScript\n• AI used: Gemini\n\n• สุ่มไพ่ทาโรต์\n• พัฒนาด้วย HTML, CSS, JavaScript\n• AI ที่ใช้: Gemini` },
+      { tags: ['webapp'], type: 'webapp', title: 'Chord Identifier', link: 'https://shocu531.github.io/chord-identifier/', desc: `• Identify chord names in real-time from pressed notes\n• Supports note input via mouse, keyboard, and MIDI Controller\n• Includes sound playback for pressed notes\n• Developed with HTML, CSS, JavaScript\n• AI used: Gemini\n\n• ระบุชื่อคอร์ดแบบเรียลไทม์จากการกดโน้ต\n• รองรับการกดโน้ตด้วยเมาส์ แป้นพิมพ์ และ MIDI Controller\n• มีเสียงตามการกดโน้ต\n• พัฒนาด้วย HTML, CSS, JavaScript\n• AI ที่ใช้: Gemini` },
+      { tags: ['webapp'], type: 'webapp', title: 'THB / USD / JPY Converter', link: 'https://shocu531.github.io/thb-usd-jpy-converter/', desc: `• Convert exchange rates for 3 currencies\n• Input amount in one currency to convert to the others\n• Uses the latest real exchange rates\n• Developed with HTML, CSS, JavaScript\n• AI used: Gemini\n\n• แปลงอัตราแลกเปลี่ยน 3 สกุลเงิน\n• ใส่จำนวนเงินแค่สกุลเดียว จะแปลงสกุลที่เหลือให้\n• ใช้อัตราแลกเปลี่ยนจริงล่าสุด\n• พัฒนาด้วย HTML, CSS, JavaScript\n• AI ที่ใช้: Gemini` },
+      { tags: ['webapp'], type: 'webapp', title: 'Binaural Beats Generator', link: 'https://shocu531.github.io/binaural-beats/', desc: `• Generate Binaural Beats for meditation and relaxation\n• Developed with Web Audio API, HTML, CSS, JavaScript\n• AI used: Gemini\n\n• สร้างเสียง Binaural Beats สำหรับการทำสมาธิและการพักผ่อน\n• พัฒนาด้วย Web Audio API, HTML, CSS, JavaScript\n• AI ที่ใช้: Gemini` },
+      { tags: ['bgm', 'dub', 'sound_edit'], type: 'youtube', id: 'prE-CU5Ruqs', title: 'GOPGAP', desc: `• Exported as a single .wav file ready to be merged with video\n• Only FX, Foley, and ambient sounds were mostly downloaded from 3rd parties, the rest were self-made\n• Software used: Ableton Live\n• No AI used\n\n• จบงานเป็น .wav ไฟล์เดียวที่เอาไปรวมกับงานภาพได้เลย\n• เฉพาะเสียง FX, Foley, บรรยากาศ ที่ส่วนใหญ่โหลดจาก 3rd Party นอกนั้นทำเองทั้งหมด\n• ซอฟต์แวร์ที่ใช้: Ableton Live\n• ไม่ใช้ AI` },
+      { tags: ['bgm', 'dub', 'sound_edit'], type: 'youtube', id: '6YZIQ8rhybQ', title: 'A Daily Disaster', desc: `• Exported as a single .wav file ready to be merged with video\n• Only FX, Foley, and ambient sounds were mostly downloaded from 3rd parties, and voiceovers are from others (except the lightning demon)\n• Software used: Ableton Live\n• No AI used\n\n• จบงานเป็น .wav ไฟล์เดียวที่เอาไปรวมกับงานภาพได้เลย\n• เฉพาะเสียง FX, Foley, บรรยากาศ ที่ส่วนใหญ่โหลดจาก 3rd Party และเสียงพากย์ที่มาจากคนอื่น (ยกเว้นปีศาจสายฟ้า)\n• ซอฟต์แวร์ที่ใช้: Ableton Live\n• ไม่ใช้ AI` },
+      { tags: ['bgm', 'dub', 'sound_edit'], type: 'youtube', id: '2MLnYi3CVW4', title: 'A Daily Disaster', desc: `• Exported as a single .wav file ready to be merged with video\n• Only FX, Foley, and ambient sounds were mostly downloaded from 3rd parties, and voiceovers are from others (except the detective)\n• Software used: Ableton Live\n• No AI used\n\n• จบงานเป็น .wav ไฟล์เดียวที่เอาไปรวมกับงานภาพได้เลย\n• เฉพาะเสียง FX, Foley, บรรยากาศ ที่ส่วนใหญ่โหลดจาก 3rd Party และเสียงพากย์ที่มาจากคนอื่น (ยกเว้นนักสืบ)\n• ซอฟต์แวร์ที่ใช้: Ableton Live\n• ไม่ใช้ AI` },
+      { tags: ['2d_animate'], type: 'youtube', id: '3WiSuG1dFGw', title: 'Part of "Interrogator"', desc: `• 2D Animator role at an organization\n• Responsible for: Character animation\n• Software used: Toon Boom Harmony\n• No AI used\n\n• งานตำแหน่ง 2D Animator ที่องค์กรแห่งหนึ่ง\n• ส่วนที่ทำ: การเคลื่อนไหวของตัวละคร\n• ซอฟต์แวร์ที่ใช้: Toon Boom Harmony\n• ไม่ใช้ AI` },
+      { tags: ['2d_animate'], type: 'youtube', id: 'x7kNhP0kfys', title: 'Part of "ちみも" (Chimimo)', desc: `• 2D Animator role at an organization\n• Responsible for: Character animation\n• Software used: Toon Boom Harmony\n• No AI used\n\n• งานตำแหน่ง 2D Animator ที่องค์กรแห่งหนึ่ง\n• ส่วนที่ทำ: การเคลื่อนไหวของตัวละคร\n• ซอฟต์แวร์ที่ใช้: Toon Boom Harmony\n• ไม่ใช้ AI` },
+      { tags: ['2d_animate'], type: 'image', url: 'https://github.com/Suppachok-N/portfolio/blob/main/Anim-Gunfight.gif?raw=true', title: 'Gunfight', desc: `• 2D Animator role at an organization\n• Internal team practice, prompt: Monster, must dash towards the camera, starts and ends with a white screen\n• Software used: Toon Boom Harmony\n• No AI used\n\n• งานตำแหน่ง 2D Animator ที่องค์กรแห่งหนึ่ง\n• งานฝึกฝนกันเองในทีม โจทย์คือมอนสเตอร์ ต้องมีการพุ่งใส่กล้อง เริ่มและจบด้วยฉากขาว\n• ซอฟต์แวร์ที่ใช้: Toon Boom Harmony\n• ไม่ใช้ AI` },
+      { tags: ['2d_animate'], type: 'image', url: 'https://github.com/Suppachok-N/portfolio/blob/main/Anim-Transform.gif?raw=true', title: 'Transform', desc: `• 2D Animator role at an organization\n• Internal team practice, prompt: Magical girl transformation, starts and ends with a white screen\n• Software used: Toon Boom Harmony\n• No AI used\n\n• งานตำแหน่ง 2D Animator ที่องค์กรแห่งหนึ่ง\n• งานฝึกฝนกันเองในทีม โจทย์คือสาวน้อยแปลงร่าง เริ่มและจบด้วยฉากขาว\n• ซอฟต์แวร์ที่ใช้: Toon Boom Harmony\n• ไม่ใช้ AI` },
+      { tags: ['2d_animate'], type: 'image', url: 'https://github.com/Suppachok-N/portfolio/blob/main/Anim-L_Run.gif?raw=true', title: 'Run cycle', desc: `• Software used: Toon Boom Harmony\n• No AI used\n\n• ซอฟต์แวร์ที่ใช้: Toon Boom Harmony\n• ไม่ใช้ AI` },
+      { tags: ['graphic'], type: 'image', url: 'https://github.com/Suppachok-N/portfolio/blob/main/Graph-Alert_HUD.jpg?raw=true', title: 'HUD interface', desc: `• Software used: Inkscape, DaVinci Resolve\n• No AI used\n\n• ซอฟต์แวร์ที่ใช้: Inkscape, Davinci Resole\n• ไม่ใช้ AI` },
+      { tags: ['graphic'], type: 'image', url: 'https://github.com/Suppachok-N/portfolio/blob/main/Graph-Maneki_Neko.jpg?raw=true', title: 'Maneki Neko', desc: `• Software used: Inkscape\n• No AI used\n\n• ซอฟต์แวร์ที่ใช้: Inkscape\n• ไม่ใช้ AI` },
+      { tags: ['graphic'], type: 'image', url: 'https://github.com/Suppachok-N/portfolio/blob/main/Graph-Sustainable_Icon.jpg?raw=true', title: 'Sustainable icon set', desc: `• Software used: Inkscape\n• No AI used\n\n• ซอฟต์แวร์ที่ใช้: Inkscape\n• ไม่ใช้ AI` },
+      { tags: ['illustration'], type: 'image', url: 'https://github.com/Suppachok-N/portfolio/blob/main/Illus-Base.png?raw=true', title: 'Outer base', desc: `• Software used: Clip Studio Paint\n• No AI used\n\n• ซอฟต์แวร์ที่ใช้: Clip Studio Paint\n• ไม่ใช้ AI` },
+      { tags: ['illustration'], type: 'image', url: 'https://github.com/Suppachok-N/portfolio/blob/main/Illus-L-Captain.png?raw=true', title: 'Captain', desc: `• Software used: Clip Studio Paint\n• No AI used\n\n• ซอฟต์แวร์ที่ใช้: Clip Studio Paint\n• ไม่ใช้ AI` },
+      { tags: ['illustration'], type: 'image', url: 'https://github.com/Suppachok-N/portfolio/blob/main/Illus-L-F-Operation.png?raw=true', title: 'Operation', desc: `• Software used: Clip Studio Paint\n• No AI used\n\n• ซอฟต์แวร์ที่ใช้: Clip Studio Paint\n• ไม่ใช้ AI` },
+      { tags: ['illustration'], type: 'image', url: 'https://github.com/Suppachok-N/portfolio/blob/main/Illus-L-K-Fight.png?raw=true', title: 'Fight', desc: `• Software used: Clip Studio Paint\n• No AI used\n\n• ซอฟต์แวร์ที่ใช้: Clip Studio Paint\n• ไม่ใช้ AI` },
+      { tags: ['illustration'], type: 'image', url: 'https://github.com/Suppachok-N/portfolio/blob/main/Illus-L-Singing.png?raw=true', title: 'Singing', desc: `• Software used: Clip Studio Paint\n• No AI used\n\n• ซอฟต์แวร์ที่ใช้: Clip Studio Paint\n• ไม่ใช้ AI` },
+      { tags: ['illustration'], type: 'image', url: 'https://github.com/Suppachok-N/portfolio/blob/main/Illus-L_M_Action.png?raw=true', title: 'Action', desc: `• Software used: Clip Studio Paint\n• No AI used\n\n• ซอฟต์แวร์ที่ใช้: Clip Studio Paint\n• ไม่ใช้ AI` },
+      { tags: ['illustration'], type: 'image', url: 'https://github.com/cokechok/portfolio/blob/main/Illus-L_Operator.png?raw=true', title: 'Operator', desc: `• Software used: Clip Studio Paint\n• No AI used\n\n• ซอฟต์แวร์ที่ใช้: Clip Studio Paint\n• ไม่ใช้ AI` },
+      { tags: ['illustration'], type: 'image', url: 'https://github.com/Suppachok-N/portfolio/blob/main/Illus-Natsuki.png?raw=true', title: 'Natsuki', desc: `• Software used: Clip Studio Paint\n• No AI used\n\n• ซอฟต์แวร์ที่ใช้: Clip Studio Paint\n• ไม่ใช้ AI` },
+      { tags: ['illustration'], type: 'image', url: 'https://github.com/cokechok/portfolio/blob/main/Illus-Norigo.png?raw=true', title: 'Norigo', desc: `• Software used: Clip Studio Paint\n• No AI used\n\n• ซอฟต์แวร์ที่ใช้: Clip Studio Paint\n• ไม่ใช้ AI` }
     ];
 
     /* --- Event Delegation For Filters --- */
