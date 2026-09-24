@@ -25,26 +25,41 @@
 
     /* Common Interactive Elements */
     .filter-btn, .sub-filter-btn, .toggle-all-btn, .btn-add, 
-    .social-btn, .detail-btn-close, .info-close-btn, .btn-visit-app {
+    .social-btn, .support-btn, .detail-btn-close, .info-close-btn, .btn-visit-app {
       cursor: pointer; transition: all 0.2s ease; -webkit-tap-highlight-color: transparent; outline: none;
     }
     .filter-btn, .sub-filter-btn, .toggle-all-btn, .btn-add, .detail-btn-close, .btn-visit-app { overflow: hidden; }
     .filter-btn, .sub-filter-btn, .toggle-all-btn, .btn-add, .info-close-btn { background-color: transparent; }
 
-    /* Social Icons */
-    .social-icons { display: flex; justify-content: center; gap: 12px; margin-bottom: 20px; }
+    /* Social Icons & Support */
+    .social-icons { display: flex; justify-content: center; gap: 12px; margin-bottom: 12px; }
     .social-btn {
       display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px;
       border-radius: 50%; background-color: color-mix(in srgb, var(--accent-color) 10%, transparent);
       color: var(--accent-color); border: 1px solid var(--accent-color); font-size: 1.1rem; text-decoration: none;
     }
+    .support-buttons { display: flex; justify-content: center; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+    .support-btn {
+      display: inline-flex; align-items: center; padding: 4px 12px; font-size: 11px; font-weight: 500;
+      color: rgba(192, 60, 60, 0.7); border: 1px solid rgba(192, 60, 60, 0.25); border-radius: 12px;
+      background-color: rgba(192, 60, 60, 0.05); text-decoration: none; opacity: 0.85; white-space: nowrap;
+    }
+    .support-btn i { width: 14px; text-align: center; margin-right: 6px; flex-shrink: 0; }
 
+    /* Hover States (Grouped for DRY Principle) */
     @media (hover: hover) {
-      .social-btn:hover, .detail-btn-close:hover { background-color: var(--accent-color); color: var(--bg-color); }
-      .filter-btn:hover, .sub-filter-btn:hover, .toggle-all-btn:hover { border-color: var(--accent-color); color: var(--accent-color); }
-      .filter-btn:hover { background-color: var(--accent-color); color: var(--bg-color); }
-      .sub-filter-btn:hover, .toggle-all-btn:hover { background-color: color-mix(in srgb, var(--accent-color) 10%, transparent); }
-      .btn-add:hover { background-color: var(--accent-color); color: var(--bg-color); transform: translateY(-2px); }
+      .social-btn:hover, .detail-btn-close:hover, .filter-btn:hover, .btn-add:hover { 
+        background-color: var(--accent-color); color: var(--bg-color); 
+      }
+      .filter-btn:hover, .sub-filter-btn:hover, .toggle-all-btn:hover { border-color: var(--accent-color); }
+      .sub-filter-btn:hover, .toggle-all-btn:hover { 
+        background-color: color-mix(in srgb, var(--accent-color) 10%, transparent); color: var(--accent-color); 
+      }
+      .support-btn:hover { 
+        background-color: rgba(239, 68, 68, 0.15); color: rgba(239, 68, 68, 0.95); 
+        border-color: rgba(239, 68, 68, 0.5); opacity: 1;
+      }
+      .btn-add:hover { transform: translateY(-2px); }
       .gallery-item:hover img { transform: scale(1.03); }
       .btn-visit-app:hover { opacity: 0.9; transform: translateY(-2px); }
       footer a:hover, .info-close-btn:hover { color: var(--accent-color); }
@@ -54,8 +69,7 @@
     .filter-section { display: flex; flex-direction: column; align-items: center; gap: 12px; margin-bottom: 30px; width: 100%; }
     .filter-menu { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
     .sub-filter-menu {
-      display: flex; justify-content: flex-start; gap: 10px; flex-wrap: nowrap; overflow-x: auto;
-      width: calc(100% + 40px); margin: 0 -20px; padding: 8px 36px;
+      display: flex; gap: 10px; overflow-x: auto; width: calc(100% + 40px); margin: 0 -20px; padding: 8px 36px;
       background-color: rgba(255, 255, 255, 0.02); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);
       -webkit-overflow-scrolling: touch; white-space: nowrap; scrollbar-width: none; cursor: grab; user-select: none;
     }
@@ -82,13 +96,13 @@
 
     .play-icon {
       position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-      width: 48px; height: 48px; background-color: rgba(0, 0, 0, 0.6); border: 2px solid rgba(217,217,217,255);
+      width: 48px; height: 48px; background-color: rgba(0, 0, 0, 0.6); border: 2px solid #d9d9d9;
       border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 10px rgba(0,0,0,0.5);
       pointer-events: none; z-index: 1;
     }
     .play-icon::after {
-      content: ""; display: block; width: 0; height: 0; border-style: solid; border-width: 8px 0 8px 14px;
-      border-color: transparent transparent transparent rgba(217,217,217,255); margin-left: 3px;
+      content: ""; display: block; border-style: solid; border-width: 8px 0 8px 14px;
+      border-color: transparent transparent transparent #d9d9d9; margin-left: 3px;
     }
 
     .webapp-card-preview {
@@ -148,8 +162,8 @@
 
     .webapp-modal-preview { width: 100%; height: 100%; padding: 40px 20px; background: color-mix(in srgb, var(--accent-color) 10%, transparent); display: flex; align-items: center; justify-content: center; }
     .btn-visit-app {
-      display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 28px;
-      background-color: var(--accent-color); color: var(--bg-color); text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 1rem;
+      display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; background-color: var(--accent-color);
+      color: var(--bg-color); text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 1rem;
     }
 
     .detail-content { padding: 20px; }
@@ -180,11 +194,9 @@
 </head>
 <body>
 
-  <div id="toast" class="toast">
-    <i class="fa-solid fa-check"></i> Email copied
-  </div>
+  <div id="toast" class="toast"><i class="fa-solid fa-check"></i> Email copied</div>
 
-  <h1>Portfolio</h1>
+  <h1>Behold—this is my skill!</h1>
 
   <div class="filter-section" id="filterSection">
     <div class="filter-menu">
@@ -218,10 +230,13 @@
       <a href="https://x.com/shocu531" target="_blank" class="social-btn" title="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
       <button id="emailBtn" class="social-btn" title="ก๊อปปี้อีเมล"><i class="fa-solid fa-envelope"></i></button>
     </div>
+    <div class="support-buttons">
+      <a href="https://ko-fi.com/shocu531" target="_blank" class="support-btn"><i class="fa-solid fa-mug-hot"></i> Give a tip</a>
+      <a href="https://www.patreon.com/cw/shocu531" target="_blank" class="support-btn"><i class="fa-brands fa-patreon"></i> Become a supporter</a>
+    </div>
     <p>© All Rights Reserved.</p>
     <p style="margin-top: 6px;">
-      <a href="#" id="privacyLink">Privacy Policy</a> | 
-      <a href="#" id="termsLink">Terms of Service</a>
+      <a href="#" id="privacyLink">Privacy Policy</a> | <a href="#" id="termsLink">Terms of Service</a>
     </p>
   </footer>
 
@@ -261,7 +276,6 @@
   </div>
 
   <script>
-    // Cached Elements Object (Optimized DOM Retrieval)
     const el = {
       gallery: document.getElementById('gallery'),
       loadMoreBtn: document.getElementById('loadMoreBtn'),
@@ -278,8 +292,8 @@
       closeDetailBtn: document.getElementById('closeDetailBtn'),
       toast: document.getElementById('toast'),
       emailBtn: document.getElementById('emailBtn'),
-      filterBtns: document.querySelectorAll('.filter-btn'),       // Cached NodeList
-      subFilterBtns: document.querySelectorAll('.sub-filter-btn') // Cached NodeList
+      filterBtns: document.querySelectorAll('.filter-btn'),
+      subFilterBtns: document.querySelectorAll('.sub-filter-btn')
     };
 
     const CAT_TAGS_MAP = {
@@ -324,20 +338,18 @@
       { tags: ['illustration'], type: 'image', url: 'https://github.com/cokechok/portfolio/blob/main/Illus-Norigo.png?raw=true', title: 'Norigo', desc: `• Software used: Clip Studio Paint.\n• No AI used.\n\n• ซอฟต์แวร์ที่ใช้: Clip Studio Paint\n• ไม่ใช้ AI` }
     ];
 
-    /* --- Event Delegation For Filters --- */
+    /* --- Filter Events --- */
     el.filterSection.addEventListener('click', (e) => {
       const t = e.target;
       if (t.classList.contains('filter-btn')) toggleMainCategory(t.dataset.category);
       else if (t.classList.contains('sub-filter-btn')) toggleTag(t.dataset.tag);
-      else if (t.classList.contains('toggle-all-btn')) handleToggleAll();
+      else if (t.classList.contains('toggle-all-btn')) {
+        activeTags = (activeTags.size === ALL_TAGS.length) ? new Set() : new Set(ALL_TAGS);
+        syncGallery();
+      }
     });
 
     el.loadMoreBtn.addEventListener('click', renderMoreItems);
-
-    function handleToggleAll() {
-      activeTags = (activeTags.size === ALL_TAGS.length) ? new Set() : new Set(ALL_TAGS);
-      syncGallery();
-    }
 
     function toggleMainCategory(category) {
       const tags = CAT_TAGS_MAP[category];
@@ -352,48 +364,33 @@
     }
 
     function syncGallery() {
-      updateUIState();
-      refreshGallery();
+      el.toggleAllBtn.textContent = (activeTags.size === ALL_TAGS.length) ? 'Clear Tag' : 'All Tag';
+      el.subFilterBtns.forEach(btn => btn.classList.toggle('active', activeTags.has(btn.dataset.tag)));
+      el.filterBtns.forEach(btn => btn.classList.toggle('active', CAT_TAGS_MAP[btn.dataset.category].some(tag => activeTags.has(tag))));
+      
+      el.gallery.innerHTML = '';
+      pendingItems = activeTags.size ? mediaList.filter(item => item.tags?.some(tag => activeTags.has(tag))).sort(() => Math.random() - 0.5) : [];
+      renderMoreItems();
       document.activeElement?.blur();
     }
 
-    function updateUIState() {
-      el.toggleAllBtn.textContent = (activeTags.size === ALL_TAGS.length) ? 'Clear Tag' : 'All Tag';
-      // Use cached NodeLists to eliminate DOM querying
-      el.subFilterBtns.forEach(btn => btn.classList.toggle('active', activeTags.has(btn.dataset.tag)));
-      el.filterBtns.forEach(btn => {
-        const tags = CAT_TAGS_MAP[btn.dataset.category];
-        btn.classList.toggle('active', tags.some(tag => activeTags.has(tag)));
-      });
-    }
-
-    function refreshGallery() {
-      el.gallery.innerHTML = '';
-      pendingItems = (activeTags.size === 0) ? [] : mediaList
-        .filter(item => item.tags?.some(tag => activeTags.has(tag)))
-        .sort(() => Math.random() - 0.5);
-      renderMoreItems();
-    }
-
     function renderMoreItems() {
-      if (activeTags.size === 0) {
+      if (!activeTags.size) {
         el.gallery.innerHTML = '<div class="empty-state">Select at least one tag to display the work.<br>เลือกอย่างน้อยหนึ่งแท็กเพื่อแสดงผลงาน</div>';
         el.loadMoreBtn.style.display = 'none';
         return;
       }
-
-      if (pendingItems.length === 0 && el.gallery.children.length === 0) {
+      if (!pendingItems.length && !el.gallery.children.length) {
         el.gallery.innerHTML = '<div class="empty-state">No works found.<br>ไม่มีผลงาน</div>';
         el.loadMoreBtn.style.display = 'none';
         return;
       }
 
       const fragment = document.createDocumentFragment();
-      const itemsToRender = pendingItems.splice(0, 3);
-      
-      itemsToRender.forEach(item => {
+      pendingItems.splice(0, 3).forEach(item => {
         const card = document.createElement('div');
         card.className = 'gallery-item';
+        card.onclick = () => openModal(item);
 
         if (item.type === 'youtube') {
           card.innerHTML = `<img class="youtube-thumb" loading="lazy" src="https://img.youtube.com/vi/${item.id}/hqdefault.jpg" alt="YouTube Video"><div class="play-icon"></div>`;
@@ -402,21 +399,18 @@
         } else {
           card.innerHTML = `<img loading="lazy" src="${item.url}" alt="Artwork">`;
         }
-
-        card.addEventListener('click', () => openModal(item));
         fragment.appendChild(card);
       });
 
       el.gallery.appendChild(fragment);
-      el.loadMoreBtn.style.display = pendingItems.length > 0 ? 'inline-block' : 'none';
+      el.loadMoreBtn.style.display = pendingItems.length ? 'inline-block' : 'none';
     }
 
-    /* --- Formatter --- */
     function formatDescription(desc) {
       if (!desc) return 'ไม่มีรายละเอียด';
       let html = '', inList = false;
       
-      desc.split('\n').forEach(line => {
+      for (const line of desc.split('\n')) {
         const trimmed = line.trim();
         if (trimmed.startsWith('•')) {
           if (!inList) { html += '<ul>'; inList = true; }
@@ -425,36 +419,21 @@
           if (inList) { html += '</ul>'; inList = false; }
           html += `${trimmed}<br>`;
         }
-      });
-      if (inList) html += '</ul>';
-      return html;
+      }
+      return html + (inList ? '</ul>' : '');
     }
 
-    /* --- Modal Logic --- */
-    function openModal(item) {
-      el.modalMedia.innerHTML = '';
-      let mediaElement;
-
-      if (item.type === 'youtube') {
-        mediaElement = document.createElement('iframe');
-        Object.assign(mediaElement, {
-          src: `https://www.youtube.com/embed/${item.id}?autoplay=1`,
-          allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture",
-          allowFullscreen: true
-        });
-      } else if (item.type === 'webapp') {
-        mediaElement = document.createElement('div');
-        mediaElement.className = 'webapp-modal-preview';
-        mediaElement.innerHTML = `<a href="${item.link}" target="_blank" class="btn-visit-app">Open Web App <i class="fa-solid fa-arrow-up-right-from-square"></i></a>`;
-      } else {
-        mediaElement = document.createElement('img');
-        mediaElement.src = item.url;
-      }
+    /* --- Modals --- */
+    function openModal({ type, id, url, link, title, tags, desc }) {
+      el.modalMedia.innerHTML = type === 'youtube' 
+        ? `<iframe src="https://www.youtube.com/embed/${id}?autoplay=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
+        : type === 'webapp' 
+          ? `<div class="webapp-modal-preview"><a href="${link}" target="_blank" class="btn-visit-app">Open Web App <i class="fa-solid fa-arrow-up-right-from-square"></i></a></div>`
+          : `<img src="${url}" alt="${title}">`;
       
-      el.modalMedia.appendChild(mediaElement);
-      el.modalTitle.textContent = item.title || 'ไม่มีชื่อ';
-      el.modalTags.innerHTML = (item.tags || []).map(tag => `<span class="tag-badge">${TAG_LABELS[tag] || tag}</span>`).join('');
-      el.modalDesc.innerHTML = formatDescription(item.desc);
+      el.modalTitle.textContent = title || 'ไม่มีชื่อ';
+      el.modalTags.innerHTML = (tags || []).map(tag => `<span class="tag-badge">${TAG_LABELS[tag] || tag}</span>`).join('');
+      el.modalDesc.innerHTML = formatDescription(desc);
       
       el.modalOverlay.classList.add('active');
       document.body.classList.add('modal-open');
@@ -466,18 +445,12 @@
       checkBodyScroll();
     }
 
-    function openInfoModal(modal) {
-      modal.classList.add('show');
-      document.body.classList.add('modal-open');
-    }
-
     function closeInfoModal(modal) {
-      modal.classList.remove('show');
+      modal?.classList.remove('show');
       checkBodyScroll();
     }
 
     function checkBodyScroll() {
-      // Replaced O(N) DOM query with O(1) direct property checks
       if (!el.modalOverlay.classList.contains('active') && 
           !el.privacyModal.classList.contains('show') && 
           !el.termsModal.classList.contains('show')) {
@@ -485,7 +458,7 @@
       }
     }
 
-    /* --- Global Event Listeners (Modals) --- */
+    /* --- Global Events --- */
     el.emailBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       navigator.clipboard.writeText('shocu531@gmail.com').then(() => el.toast.classList.add('show'));
@@ -493,27 +466,18 @@
 
     document.addEventListener('click', (e) => {
       const t = e.target;
-      el.toast.classList.remove('show');
+      if (el.toast.classList.contains('show') && t !== el.emailBtn) el.toast.classList.remove('show');
       
-      // Consolidated Click Delegation using if-else if
-      if (t === el.modalOverlay || t === el.closeDetailBtn) {
-        closeDetailModal();
-      } else if (t === el.privacyModal || t === el.termsModal) {
-        closeInfoModal(t);
-      } else if (t.closest('.info-close-btn')) {
-        closeInfoModal(t.closest('.info-modal'));
-      } else if (t.id === 'privacyLink') {
-        e.preventDefault(); openInfoModal(el.privacyModal);
-      } else if (t.id === 'termsLink') {
-        e.preventDefault(); openInfoModal(el.termsModal);
-      }
+      if (t === el.modalOverlay || t === el.closeDetailBtn) closeDetailModal();
+      else if (t === el.privacyModal || t === el.termsModal || t.closest('.info-close-btn')) closeInfoModal(t.closest('.info-modal') || t);
+      else if (t.id === 'privacyLink') { e.preventDefault(); el.privacyModal.classList.add('show'); document.body.classList.add('modal-open'); }
+      else if (t.id === 'termsLink') { e.preventDefault(); el.termsModal.classList.add('show'); document.body.classList.add('modal-open'); }
     });
 
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         if (el.modalOverlay.classList.contains('active')) closeDetailModal();
-        if (el.privacyModal.classList.contains('show')) closeInfoModal(el.privacyModal);
-        if (el.termsModal.classList.contains('show')) closeInfoModal(el.termsModal);
+        else { closeInfoModal(el.privacyModal); closeInfoModal(el.termsModal); }
       }
     });
 
@@ -529,11 +493,9 @@
     el.subFilterMenu.addEventListener('mousemove', (e) => {
       if (!isDown) return;
       e.preventDefault();
-      const walk = (e.pageX - el.subFilterMenu.offsetLeft - startX) * 2;
-      el.subFilterMenu.scrollLeft = scrollLeft - walk;
+      el.subFilterMenu.scrollLeft = scrollLeft - ((e.pageX - el.subFilterMenu.offsetLeft - startX) * 2);
     });
 
-    /* --- Initialize --- */
     syncGallery();
   </script>
 </body>
