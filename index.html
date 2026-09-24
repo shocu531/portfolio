@@ -41,8 +41,8 @@
     .support-buttons { display: flex; justify-content: center; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
     .support-btn {
       display: inline-flex; align-items: center; padding: 4px 12px; font-size: 11px; font-weight: 500;
-      color: rgba(192, 60, 60, 0.7); border: 1px solid rgba(192, 60, 60, 0.25); border-radius: 12px;
-      background-color: rgba(192, 60, 60, 0.05); text-decoration: none; opacity: 0.85; white-space: nowrap;
+      color: rgba(74, 222, 128, 0.85); border: 1px solid rgba(74, 222, 128, 0.3); border-radius: 12px;
+      background-color: rgba(74, 222, 128, 0.05); text-decoration: none; opacity: 0.85; white-space: nowrap;
     }
     .support-btn i { width: 14px; text-align: center; margin-right: 6px; flex-shrink: 0; }
 
@@ -56,8 +56,8 @@
         background-color: color-mix(in srgb, var(--accent-color) 10%, transparent); color: var(--accent-color); 
       }
       .support-btn:hover { 
-        background-color: rgba(239, 68, 68, 0.15); color: rgba(239, 68, 68, 0.95); 
-        border-color: rgba(239, 68, 68, 0.5); opacity: 1;
+        background-color: rgba(74, 222, 128, 0.15); color: rgba(74, 222, 128, 1); 
+        border-color: rgba(74, 222, 128, 0.6); opacity: 1;
       }
       .btn-add:hover { transform: translateY(-2px); }
       .gallery-item:hover img { transform: scale(1.03); }
@@ -225,13 +225,14 @@
   </div>
 
   <footer>
+   <div class="support-buttons">
+      <a href="https://ko-fi.com/shocu531" target="_blank" class="support-btn"><i class="fa-solid fa-mug-hot"></i>Give a tip / Commissions</a>
+      <a href="patreon.com/cw/shocu531" target="_blank" class="support-btn"><i class="fa-brands fa-patreon"></i>Become a supporter</a>
+    </div>
     <div class="social-icons">
       <a href="https://www.instagram.com/shocu531/" target="_blank" class="social-btn" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
       <a href="https://x.com/shocu531" target="_blank" class="social-btn" title="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
       <button id="emailBtn" class="social-btn" title="ก๊อปปี้อีเมล"><i class="fa-solid fa-envelope"></i></button>
-    </div>
-    <div class="support-buttons">
-      <a href="https://ko-fi.com/shocu531" target="_blank" class="support-btn"><i class="fa-solid fa-thumbs-up"></i>Commissions / Become a supporter</a>
     </div>
     <p>© All Rights Reserved.</p>
     <p style="margin-top: 6px;">
