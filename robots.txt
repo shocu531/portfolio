@@ -1,0 +1,4 @@
+Plaintext
+User-agent: *
+Allow: /
+Sitemap: https://shocu531.github.io/portfolio/sitemap.xml
